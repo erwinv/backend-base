@@ -1,0 +1,1 @@
+- [] https://github.com/TCMiranda/joi-extract-type

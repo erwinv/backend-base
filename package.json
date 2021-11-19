@@ -1,0 +1,73 @@
+{
+  "name": "backend-base",
+  "version": "0.1.0",
+  "description": "",
+  "main": "build/main.js",
+  "scripts": {
+    "clean": "rm -rf build",
+    "lint": "eslint . --ext .js,.ts",
+    "prebuild": "npm run lint",
+    "build": "tsc",
+    "precleanbuild": "npm run clean",
+    "cleanbuild": "npm run build",
+    "pretest": "npm run build",
+    "test": "jest",
+    "start": "node build/main.js",
+    "build:watch": "tsc --watch",
+    "test:watch": "jest --watch --verbose=false --coverage=false",
+    "start:watch": "nodemon build/main.js",
+    "migrate:make": "knex migrate:make --esm --env makeMigration",
+    "migrate:latest": "knex migrate:latest --esm --env runMigration",
+    "migrate:rollback": "knex migrate:rollback --esm --env runMigration"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erwinv/backend-base.git"
+  },
+  "author": "Erwin Villejo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erwinv/backend-base/issues"
+  },
+  "homepage": "https://github.com/erwinv/backend-base#readme",
+  "engines": {
+    "node": ">=16.3.0"
+  },
+  "dependencies": {
+    "@erwinv/envvar": "^2.0.4",
+    "@koa/router": "^10.1.1",
+    "dotenv": "^10.0.0",
+    "joi": "^17.4.2",
+    "knex": "^0.95.14",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-compose": "^4.1.0",
+    "koa-logger": "^3.2.1",
+    "lodash": "^4.17.21",
+    "luxon": "^2.1.1",
+    "mongoose": "^6.0.13",
+    "objection": "^3.0.0",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/js-yaml": "^4.0.4",
+    "@types/koa": "^2.13.4",
+    "@types/koa__router": "^8.0.9",
+    "@types/koa-bodyparser": "^4.3.4",
+    "@types/koa-logger": "^3.1.2",
+    "@types/lodash": "^4.14.177",
+    "@types/luxon": "^2.0.7",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.2.0",
+    "jest": "^27.3.1",
+    "js-yaml": "^4.1.0",
+    "mongodb-memory-server": "^8.0.2",
+    "nodemon": "^2.0.15",
+    "sqlite3": "^4.2.0",
+    "supertest": "^6.1.6",
+    "typescript": "^4.5.2"
+  }
+}
