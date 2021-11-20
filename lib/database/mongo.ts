@@ -5,7 +5,10 @@ let connection: Awaited<ReturnType<typeof mongoose.connect>>
 
 export async function setup() {
   if (!connection) {
-    const uri = new URL(env.MONGODB_DBNAME, `mongodb://${env.MONGODB_HOST}:${env.MONGODB_PORT}`)
+    const uri = new URL(
+      env.MONGODB_DBNAME,
+      `mongodb://${env.MONGODB_HOST}:${env.MONGODB_PORT}`
+    )
     uri.searchParams.set('authSource', env.MONGODB_AUTHSOURCE)
 
     connection = await mongoose.connect(uri.toString(), {

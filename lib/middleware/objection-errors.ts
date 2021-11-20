@@ -2,7 +2,9 @@ import _ from 'lodash'
 import koa from 'koa'
 import objection from 'objection'
 
-const _isNilOrEmpty = (x: unknown): x is null | undefined | Record<string, never> => _.isNil(x) || _.isEmpty(x)
+const _isNilOrEmpty = (
+  x: unknown
+): x is null | undefined | Record<string, never> => _.isNil(x) || _.isEmpty(x)
 
 export default function objectionErrors(): koa.Middleware {
   return async (ctx, next) => {

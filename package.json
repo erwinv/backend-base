@@ -5,6 +5,8 @@
   "main": "build/main.js",
   "scripts": {
     "clean": "rm -rf build",
+    "format": "npx prettier --write .",
+    "prelint": "npm run format",
     "lint": "eslint . --ext .js,.ts",
     "prebuild": "npm run lint",
     "build": "tsc",
