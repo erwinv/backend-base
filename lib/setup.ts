@@ -1,24 +1,23 @@
-import initializeMongoose, { teardownMongoose } from './database/mongo'
-import initializeObjection, { teardownObjection } from './database/postgres'
+import * as database from './database'
 
-export default async function initializeServiceDependencies() {
-  await Promise.all([
-    initializeMongoose(),
-    initializeObjection(),
-  ])
-
-  return {
-    teardown: teardownServiceDependencies,
-    teardownListener: () => {
-      process.on('SIGINT', teardownServiceDependencies)
-      process.on('SIGTERM', teardownServiceDependencies)
-    }
-  }
+export async function setup() {
+  await Promise.all(
+    Object.values(database).map(db => db.setup())
+  )
 }
 
-export async function teardownServiceDependencies() {
-  await Promise.all([
-    teardownMongoose(),
-    teardownObjection(),
-  ])
+export async function teardown() {
+  await Promise.all(
+    Object.values(database).map(db => db.teardown())
+  )
+}
+
+export function onTeardown(teardownListener: () => Promise<void>) {
+  const sigHandler = (exitCode: number) =>
+    () => teardownListener()
+      .then(() => process.exit(0))
+      .catch(() => process.exit(exitCode))
+
+  process.on('SIGINT', sigHandler(130))
+  process.on('SIGTERM', sigHandler(143))
 }

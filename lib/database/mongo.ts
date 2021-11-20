@@ -1,19 +1,22 @@
 import mongoose from 'mongoose'
 import env from '../env'
 
-let connection: ReturnType<typeof mongoose.connect>
+let connection: Awaited<ReturnType<typeof mongoose.connect>>
 
-export default async function initializeMongoose() {
+export async function setup() {
   if (!connection) {
-    connection = mongoose.connect(env.MONGODB_URI.toString(), {
+    const uri = new URL(env.MONGODB_DBNAME, `mongodb://${env.MONGODB_HOST}:${env.MONGODB_PORT}`)
+    uri.searchParams.set('authSource', env.MONGODB_AUTHSOURCE)
+
+    connection = await mongoose.connect(uri.toString(), {
       user: env.MONGODB_USER,
       pass: env.MONGODB_PASSWORD,
     })
   }
-
-  return connection
 }
 
-export async function teardownMongoose() {
-  await mongoose.disconnect()
+export async function teardown() {
+  if (connection) {
+    await connection.disconnect()
+  }
 }
