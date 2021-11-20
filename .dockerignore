@@ -3,6 +3,7 @@
 !migrations
 !test
 !.eslint*
+!.prettier*
 !*.js
 !*.json
 !*.ts
