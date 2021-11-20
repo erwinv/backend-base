@@ -1,1 +1,2 @@
-- [] https://github.com/TCMiranda/joi-extract-type
+- auto infer validation types https://github.com/TCMiranda/joi-extract-type
+- set up autoformatting with prettier

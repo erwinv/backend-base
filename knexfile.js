@@ -20,7 +20,7 @@ export default {
     migrations: {
       tableName: 'knex_migrations',
       directory: 'build/migrations/',
-      loadExtensions: ['.js']
+      loadExtensions: ['.js'],
     },
   },
 }
