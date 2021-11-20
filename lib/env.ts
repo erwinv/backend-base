@@ -29,7 +29,7 @@ if (runningAsMain) {
   try {
     process.stdout.write(envVars.example())
     process.exit(0)
-  } catch(e) {
+  } catch (e) {
     process.stderr.write(format(e))
     process.exit(1)
   }

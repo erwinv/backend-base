@@ -12,9 +12,9 @@ export default {
   runMigration: {
     client: 'pg',
     connection: {
-      host:     env.POSTGRES_HOST,
+      host: env.POSTGRES_HOST,
       database: env.POSTGRES_DATABASE,
-      user:     env.POSTGRES_USER,
+      user: env.POSTGRES_USER,
       password: env.POSTGRES_PASSWORD,
     },
     migrations: {

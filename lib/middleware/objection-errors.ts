@@ -10,10 +10,13 @@ export default function objectionErrors(): koa.Middleware {
       await next()
     } catch (error) {
       if (error instanceof objection.ValidationError) {
-        ctx.body = _.omitBy({
-          message: error.message,
-          details: error.data,
-        }, _isNilOrEmpty)
+        ctx.body = _.omitBy(
+          {
+            message: error.message,
+            details: error.data,
+          },
+          _isNilOrEmpty
+        )
 
         ctx.status = error.statusCode
         ctx.message = `${error.type} ${error.name}`

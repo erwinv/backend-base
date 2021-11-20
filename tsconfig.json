@@ -16,14 +16,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": [
-    "main.ts",
-    "lib/**/*",
-    "test/**/*",
-    "scripts/**/*",
-    "migrations/**/*"
-  ],
-  "exclude": [
-    "build/**/*"
-  ]
+  "include": ["main.ts", "lib/**/*", "test/**/*", "scripts/**/*", "migrations/**/*"],
+  "exclude": ["build/**/*"]
 }

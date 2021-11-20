@@ -14,7 +14,7 @@ export async function setup() {
         user: env.POSTGRES_USER,
         password: env.POSTGRES_PASSWORD,
         database: env.POSTGRES_DATABASE,
-      }
+      },
     })
     objection.Model.knex(connection)
   }

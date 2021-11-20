@@ -8,10 +8,7 @@ export default function Router(...args: ConstructorParameters<typeof koaRouter>)
     defineRoutes: (definer: (router: koaRouter) => koaRouter) => {
       definer(baseRouter)
       return {
-        compile: () => compose([
-          baseRouter.routes(),
-          baseRouter.allowedMethods()
-        ])
+        compile: () => compose([baseRouter.routes(), baseRouter.allowedMethods()]),
       }
     },
   }
