@@ -5,7 +5,7 @@
   "main": "build/main.js",
   "scripts": {
     "clean": "rm -rf build",
-    "format": "npx prettier --write .",
+    "format": "prettier --write .",
     "prelint": "npm run format",
     "lint": "eslint . --ext .js,.ts",
     "prebuild": "npm run lint",
@@ -18,6 +18,7 @@
     "build:watch": "tsc --watch",
     "test:watch": "jest --watch --verbose=false --coverage=false",
     "start:watch": "nodemon build/main.js",
+    "dev": "concurrently --names tsc,node 'npm run build:watch' 'npm run start:watch'",
     "migrate:make": "knex migrate:make --esm --env makeMigration",
     "migrate:latest": "knex migrate:latest --esm --env runMigration",
     "migrate:rollback": "knex migrate:rollback --esm --env runMigration"
@@ -66,6 +67,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "concurrently": "^6.4.0",
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "ioredis-mock": "^5.8.0",

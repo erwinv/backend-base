@@ -1,4 +1,4 @@
-FROM node:gallium as build
+FROM node:16 as build
 RUN mkdir /app
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -6,7 +6,14 @@ RUN npm install
 COPY ./ ./
 RUN npm run build
 
-FROM node:gallium-alpine as base
+FROM node:16 as dev
+USER node
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
+COPY --from=build --chown=node /app /home/node/app
+CMD npm run dev
+
+FROM node:16-alpine as base
 RUN apk update
 RUN apk add --no-cache ca-certificates
 RUN update-ca-certificates

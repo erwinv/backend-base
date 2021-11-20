@@ -3,12 +3,16 @@ version: '3.8'
 services:
   api:
     tty: true
-    image: backend-base
-    ports:
-      - '${PORT}'
+    image: backend-base-dev
     build:
       context: ..
-      dockerfile: Dockerfile
+      dockerfile: .docker/Dockerfile
+      target: dev
+    volumes:
+      - ./lib:/home/node/app/lib
+      - ./migrations:/home/node/app/migrations
+    ports:
+      - '${PORT}'
     depends_on:
       - mongo
       - postgres

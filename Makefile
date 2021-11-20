@@ -3,5 +3,5 @@ docker-build:
 		--build-arg commit_id=$(shell git rev-parse HEAD) \
 		.
 
-docker-compose-up:
-	docker-compose -f .docker/docker-compose.yml up
+docker-dev:
+	docker-compose -f .docker/docker-compose.yml up --build
